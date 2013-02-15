@@ -32,7 +32,7 @@ def you_accidentally():
         }
         print "Would make this issue: ", data['assignee'], repo[0].split('/')[1]
         print "But we're being nice and this is a practice run."
-        #GH.issues.create(data, user=data['asignee'], repo=repo[0].split('/')[1])
+        #GH.issues.create(data, user=data['assignee'], repo=repo[0].split('/')[1])
 
 
 def find_repos(html):
