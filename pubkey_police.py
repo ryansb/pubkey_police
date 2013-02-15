@@ -30,7 +30,7 @@ def you_accidentally():
             'body': BODY_TEMPLATE.format(title=repo[1], fileurl=repo[2]),
             'assignee': repo[0].split('/')[0]
         }
-        print "Would make this issue: ", data['asignee'], repo[0].split('/')[1]
+        print "Would make this issue: ", data['assignee'], repo[0].split('/')[1]
         print "But we're being nice and this is a practice run."
         #GH.issues.create(data, user=data['asignee'], repo=repo[0].split('/')[1])
 
@@ -64,9 +64,11 @@ if __name__ == "__main__":
             for r in find_repos(resp.content):
                 REPOS.append(r)
                 print r[0]
+            if len(REPOS) > 50: raise OutOfResultsException
         except OutOfResultsException, e:
             print e.message
             break
+        REPOS = list(set(REPOS))
 
     print "Messaging users"
     you_accidentally()
